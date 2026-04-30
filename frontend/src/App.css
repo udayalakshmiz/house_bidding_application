@@ -1,0 +1,5 @@
+/* Styles moved to index.css for a global ethereal design system */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}

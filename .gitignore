@@ -1,0 +1,29 @@
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.swp
+
+# ---- Frontend (Vite/Node) ----
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Backend (Spring Boot/Maven) ----
+backend/target/
+backend/uploads/
+backend/logs/
+backend/*.log
+backend/src/main/resources/application.yml
+backend/src/main/resources/application-local.yml
+
+# ---- Env files ----
+.env
+.env.*
