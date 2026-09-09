@@ -21,7 +21,6 @@ backend/target/
 backend/uploads/
 backend/logs/
 backend/*.log
-backend/src/main/resources/application.yml
 backend/src/main/resources/application-local.yml
 
 # ---- Env files ----

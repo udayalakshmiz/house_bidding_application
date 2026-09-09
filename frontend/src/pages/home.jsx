@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { SERVER_BASE_URL } from "../config/apiConfig"
 
 function Home() {
   const [message, setMessage] = useState("")
 
   useEffect(() => {
-    axios.get("http://localhost:8081/test")
+    axios.get(`${SERVER_BASE_URL}/test`)
       .then(response => {
         setMessage(response.data)
       })

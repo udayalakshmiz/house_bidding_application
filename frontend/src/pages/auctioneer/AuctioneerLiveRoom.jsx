@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import SockJS from "sockjs-client"
 import { Client } from "@stomp/stompjs"
 import { getAuctionRoomState } from "../../services/authService"
+import { WS_BASE_URL } from "../../config/apiConfig"
 
 const fmt = (n) => `₹${Number(n).toLocaleString("en-IN")}`
 function pad(n) { return String(Math.floor(n)).padStart(2, "0") }
@@ -94,7 +95,7 @@ export default function AuctioneerLiveRoom() {
 
         const client = new Client({
             webSocketFactory: () =>
-                new SockJS("http://localhost:8081/ws-auction"),
+                new SockJS(WS_BASE_URL),
             connectHeaders: {},
             onConnect: () => {
                 setConnected(true)

@@ -2,9 +2,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { createProperty, getMyProperties, getMyAuctions, logout, resubmitProperty, deleteMyProperty, requestPropertyDeletion, cancelAuction } from "../../services/authService"
 import DashboardLayout from "../../components/DashboardLayout"
+import { SERVER_BASE_URL } from "../../config/apiConfig"
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const BASE = "http://localhost:8081"
+const BASE = SERVER_BASE_URL
 const PRIMARY = "#4f46e5"
 
 // ── Utilities ─────────────────────────────────────────────────────────────────

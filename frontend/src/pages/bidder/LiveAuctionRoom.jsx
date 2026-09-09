@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import SockJS from "sockjs-client"
 import { Client } from "@stomp/stompjs"
 import { getAuctionRoomState } from "../../services/authService"
+import { WS_BASE_URL } from "../../config/apiConfig"
 
 // ── helpers ───────────────────────────────────────────────────────────────────
 const fmt = (n) => `₹${Number(n).toLocaleString("en-IN")}`
@@ -140,7 +141,7 @@ if (!role) { navigate("/login"); return }
 
         const client = new Client({
             webSocketFactory: () =>
-                new SockJS("http://localhost:8081/ws-auction"),
+                new SockJS(WS_BASE_URL),
 
             connectHeaders: {
                 Authorization: token ? `Bearer ${token}` : "",

@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql:8.0
+    container_name: house_auction_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: house_auction_db
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: house_auction_backend
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/house_auction_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+      CORS_ALLOWED_ORIGINS: "http://localhost:5173,http://localhost:80,http://localhost"
+      FRONTEND_URL: "http://localhost:5173"
+      JWT_SECRET: "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970"
+    depends_on:
+      - mysqldb
+    volumes:
+      - backend_uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:8081/api
+        VITE_SERVER_BASE_URL: http://localhost:8081
+        VITE_WS_BASE_URL: http://localhost:8081/ws-auction
+    container_name: house_auction_frontend
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+  backend_uploads:

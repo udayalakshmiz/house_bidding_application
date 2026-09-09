@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getMyProperties, createAuction } from "../../services/authService"
+import { getFileUrl } from "../../config/apiConfig"
 
 // ─── Theme ────────────────────────────────────────────────────────────────────
 const C = {
@@ -311,7 +312,7 @@ export default function CreateAuction() {
                 <div style={sty.preview}>
                   {selectedProp.imageUrl && (
                     <img
-                      src={`http://localhost:8081${selectedProp.imageUrl}`}
+                      src={getFileUrl(selectedProp.imageUrl)}
                       alt={selectedProp.title}
                       style={{ width: 120, height: 90, objectFit: "cover", borderRadius: 8, border: `1px solid ${C.border}` }}
                       onError={e => { e.target.style.display = "none" }}

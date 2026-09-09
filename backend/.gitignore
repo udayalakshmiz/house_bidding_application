@@ -9,7 +9,6 @@ logs/
 *.tmp
 
 # Local secrets/config
-src/main/resources/application.yml
 src/main/resources/application-local.yml
 .env
 .env.*

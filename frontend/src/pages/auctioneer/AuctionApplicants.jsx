@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getAuctionApplications, approveApplication, rejectApplication } from "../../services/authService"
+import { getFileUrl } from "../../config/apiConfig"
 
 const STATUS_STYLE = {
     PENDING: { bg: "#1e2a1a", color: "#ffd54f", label: "Pending" },
@@ -26,12 +27,8 @@ function BidderDetailModal({ app, onClose, onApprove, onReject }) {
     const sts = STATUS_STYLE[app.status] || STATUS_STYLE.PENDING
 
     // Build URLs for uploaded files
-    const aadhaarImgUrl = app.aadhaarImagePath
-        ? `http://localhost:8081${app.aadhaarImagePath.startsWith("/") ? "" : "/"}${app.aadhaarImagePath}`
-        : null
-    const incomeProofUrl = app.incomeProofPath
-        ? `http://localhost:8081${app.incomeProofPath.startsWith("/") ? "" : "/"}${app.incomeProofPath}`
-        : null
+    const aadhaarImgUrl = app.aadhaarImagePath ? getFileUrl(app.aadhaarImagePath) : null
+    const incomeProofUrl = app.incomeProofPath ? getFileUrl(app.incomeProofPath) : null
     const incomeProofIsPdf = incomeProofUrl && app.incomeProofPath?.toLowerCase().endsWith(".pdf")
 
     const handleApprove = async () => {

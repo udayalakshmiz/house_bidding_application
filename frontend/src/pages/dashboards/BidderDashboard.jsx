@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom"
 import { getApprovedProperties, getActiveAuctions, getMyApplications, logout, withdrawApplication } from "../../services/authService"
 import DashboardLayout from "../../components/DashboardLayout"
 import ApplyModal from "../../components/ApplyModal"
+import { SERVER_BASE_URL } from "../../config/apiConfig"
 
 // ── Constants ──────────────────────────────────────────────────────────────────
-const BASE = "http://localhost:8081"
+const BASE = SERVER_BASE_URL
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
 function formatINR(v) {

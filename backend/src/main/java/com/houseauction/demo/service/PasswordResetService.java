@@ -2,6 +2,7 @@ package com.houseauction.demo.service;
 
 import com.houseauction.demo.model.User;
 import com.houseauction.demo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class PasswordResetService {
 
     private final UserRepository userRepository;
     private final JavaMailSender mailSender;
+
+    @Value("${app.frontend-url:http://localhost:5173}")
+    private String frontendUrl;
 
     public PasswordResetService(UserRepository userRepository, JavaMailSender mailSender) {
         this.userRepository = userRepository;
@@ -30,7 +34,7 @@ public class PasswordResetService {
         user.setResetTokenExpiry(LocalDateTime.now().plusMinutes(15));
         userRepository.save(user);
 
-        String resetLink = "http://localhost:5173/reset-password?token=" + token;
+        String resetLink = frontendUrl + "/reset-password?token=" + token;
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);

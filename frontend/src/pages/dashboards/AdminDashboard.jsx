@@ -2,8 +2,9 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { approveProperty, getPendingProperties, logout, rejectProperty, getDeletionRequests, approveDeletion, rejectDeletion, getApprovedProperties } from "../../services/authService"
 import DashboardLayout from "../../components/DashboardLayout"
+import { SERVER_BASE_URL } from "../../config/apiConfig"
 
-const BASE = "http://localhost:8081"
+const BASE = SERVER_BASE_URL
 
 function formatINR(v) {
     const n = Number(v); if (isNaN(n)) return "₹0"

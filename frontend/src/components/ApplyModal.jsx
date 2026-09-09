@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { applyToAuction } from "../services/authService"
+import { API_BASE_URL } from "../config/apiConfig"
 
 const HISTORY_OPTIONS = [
     { value: "NONE", label: "First-time bidder – no history" },
@@ -28,7 +29,7 @@ const inp = {
 
 // ── Aadhaar verification UI (Now calls backend proxy) ─────────────────────────
 async function askBLIP(imageBase64, question) {
-    const res = await fetch("http://localhost:8081/api/huggingface/verify-aadhaar", {
+    const res = await fetch(`${API_BASE_URL}/huggingface/verify-aadhaar`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

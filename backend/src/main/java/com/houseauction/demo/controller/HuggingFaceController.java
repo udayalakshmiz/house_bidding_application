@@ -7,7 +7,6 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/huggingface")
-@CrossOrigin(origins = "http://localhost:5173")
 public class HuggingFaceController {
 
     @PostMapping("/verify-aadhaar")
