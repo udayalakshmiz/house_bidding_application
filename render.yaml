@@ -1,11 +1,4 @@
 services:
-  # MySQL Database Service
-  - type: mysql
-    name: house-auction-db
-    databaseName: house_auction_db
-    user: house_user
-    plan: free
-
   # Spring Boot Backend Service
   - type: web
     name: house-auction-backend
@@ -22,14 +15,6 @@ services:
         fromDatabase:
           name: house-auction-db
           property: connectionString
-      - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: house-auction-db
-          property: user
-      - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: house-auction-db
-          property: password
       - key: CORS_ALLOWED_ORIGINS
         value: "https://house-auction-frontend.onrender.com,http://localhost:5173"
       - key: FRONTEND_URL
@@ -56,3 +41,9 @@ services:
         value: "https://house-auction-backend.onrender.com"
       - key: VITE_WS_BASE_URL
         value: "https://house-auction-backend.onrender.com/ws-auction"
+
+databases:
+  - name: house-auction-db
+    databaseName: house_auction_db
+    user: house_user
+    plan: free

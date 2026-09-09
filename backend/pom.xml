@@ -81,6 +81,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- PostgreSQL (for Render / cloud deployment) -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- Testing (only this one needed) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
