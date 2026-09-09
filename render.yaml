@@ -1,11 +1,10 @@
 services:
-  # Spring Boot Backend Service
+  # Spring Boot Backend Web Service
   - type: web
     name: house-auction-backend
-    env: docker
+    runtime: docker
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
-    plan: free
     disk:
       name: uploads-disk
       mountPath: /app/uploads
@@ -24,10 +23,10 @@ services:
       - key: JWT_SECRET
         generateValue: true
 
-  # React Frontend Service
+  # React Frontend Static Site
   - type: web
     name: house-auction-frontend
-    env: static
+    runtime: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     routes:
@@ -46,4 +45,3 @@ databases:
   - name: house-auction-db
     databaseName: house_auction_db
     user: house_user
-    plan: free
